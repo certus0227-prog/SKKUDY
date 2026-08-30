@@ -5,7 +5,7 @@ export async function onRequestPost(context) {
         
         const kv = context.env.USERS;
         if (!kv) {
-            return new Response(JSON.stringify({ success: false, message: "에러: KV 바인딩(USERS)이 연결되지 않았습니다!" }), {
+            return new Response(JSON.stringify({ success: false, message: "KV(USERS) 바인딩 누락" }), {
                 headers: { 'Content-Type': 'application/json' }
             });
         }
@@ -24,10 +24,9 @@ export async function onRequestPost(context) {
             headers: { 'Content-Type': 'application/json' }
         });
     } catch (e) {
-        // 서버에서 발생한 진짜 에러 메시지를 브라우저에 그대로 반환합니다.
-        return new Response(JSON.stringify({ success: false, message: "서버 내부 오류: " + e.message }), {
+        return new Response(JSON.stringify({ success: false, message: e.message }), {
             headers: { 'Content-Type': 'application/json' },
-            status: 200 // 에러 내용을 확실히 읽을 수 있게 200으로 응답
+            status: 500
         });
     }
 }
