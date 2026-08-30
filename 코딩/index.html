@@ -18,13 +18,7 @@
             --saturday-color: #3b82f6;
         }
 
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            font-family: 'Pretendard', -apple-system, sans-serif;
-        }
-
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Pretendard', -apple-system, sans-serif; }
         body { background-color: var(--bg-color); color: var(--text-main); }
         .hidden { display: none !important; }
 
@@ -54,8 +48,6 @@
 
         /* Layout */
         #app-container { display: flex; height: 100vh; overflow: hidden; }
-
-        /* Sidebar */
         #sidebar {
             width: 250px; background: var(--sidebar-bg); color: white;
             display: flex; flex-direction: column; padding: 20px 0; flex-shrink: 0;
@@ -69,7 +61,6 @@
             background: #374151; color: white; border-left: 4px solid var(--primary-color);
         }
 
-        /* Main Content */
         #main-content { flex: 1; padding: 40px; overflow-y: auto; }
         header {
             display: flex; justify-content: space-between; align-items: center;
@@ -82,20 +73,15 @@
             background: var(--holiday-color); color: white; padding: 10px 20px;
             border-radius: 20px; font-size: 24px; font-weight: 900;
         }
-
         .date-header { font-size: 18px; color: var(--text-muted); margin-bottom: 20px; font-weight: 600;}
 
-        /* Cards */
         .card {
             background: var(--card-bg); padding: 25px; border-radius: var(--border-radius);
             box-shadow: 0 4px 6px -1px rgba(0,0,0,0.05); margin-bottom: 25px;
         }
         .card h3 { margin-bottom: 15px; font-size: 18px; color: #1f2937; }
-
-        /* Dashboard Grid */
         .dashboard-grid { display: grid; grid-template-columns: 1fr; gap: 25px; }
 
-        /* Timer & Stopwatch common UI */
         .timer-display { font-size: 54px; font-weight: 900; text-align: center; color: var(--primary-color); margin: 20px 0; }
         .timer-btns { display: flex; gap: 10px; justify-content: center; margin-top: 15px; }
         .timer-btns button { padding: 10px 20px; border-radius: 6px; border: none; font-weight: bold; cursor: pointer; color: white; font-size: 15px; }
@@ -107,39 +93,16 @@
         .time-setting-box { display: flex; gap: 10px; justify-content: center; align-items: center; margin-bottom: 15px; }
         .time-setting-box input { width: 100px; padding: 8px; border: 1px solid #d1d5db; border-radius: 6px; font-size: 16px; text-align: center; }
 
-        /* Fullscreen Focus Mode */
-        #focus-fullscreen {
+        #focus-fullscreen, #stopwatch-fullscreen {
             position: fixed; top: 0; left: 0; width: 100vw; height: 100vh;
             background: #000; z-index: 9999; display: flex; flex-direction: column;
             justify-content: center; align-items: center; color: white;
         }
-        #fullscreen-timer-display { 
-            font-size: 120px; 
-            font-weight: 700; 
-            color: #ffffff; 
-            margin-bottom: 30px; 
-            letter-spacing: 2px; 
-            font-family: 'Segoe UI', -apple-system, BlinkMacSystemFont, sans-serif;
+        #fullscreen-timer-display, #fullscreen-stopwatch-display { 
+            font-size: 120px; font-weight: 700; color: #ffffff; margin-bottom: 30px; letter-spacing: 2px; 
         }
-        .fullscreen-btns { display: flex; gap: 20px; }
         .fullscreen-btns button { padding: 12px 28px; font-size: 15px; font-weight: 500; border-radius: 8px; border: none; cursor: pointer; }
 
-        /* Stopwatch Fullscreen Focus Mode */
-        #stopwatch-fullscreen {
-            position: fixed; top: 0; left: 0; width: 100vw; height: 100vh;
-            background: #000; z-index: 9999; display: flex; flex-direction: column;
-            justify-content: center; align-items: center; color: white;
-        }
-        #fullscreen-stopwatch-display { 
-            font-size: 120px; 
-            font-weight: 700; 
-            color: #ffffff; 
-            margin-bottom: 30px; 
-            letter-spacing: 2px; 
-            font-family: 'Segoe UI', -apple-system, BlinkMacSystemFont, sans-serif;
-        }
-
-        /* Input Group */
         .input-group { display: flex; flex-direction: column; gap: 15px; }
         .input-row { display: flex; gap: 10px; }
         .input-row input { flex: 1; }
@@ -153,15 +116,12 @@
             color: white; border: none; border-radius: 8px; font-weight: bold; cursor: pointer;
         }
 
-        /* Review List */
         .task-list { list-style: none; }
         .task-list li {
             padding: 15px; border-bottom: 1px solid #f3f4f6; display: flex; 
             flex-direction: column; gap: 10px; transition: 0.2s;
         }
-        .task-list li:last-child { border-bottom: none; }
         .empty-msg { color: var(--text-muted); text-align: center; font-style: italic; padding: 10px; }
-        
         .task-top { display: flex; justify-content: space-between; align-items: center; }
         .task-info { display: flex; align-items: center; gap: 12px; }
         .task-info input[type="checkbox"] { width: 18px; height: 18px; cursor: pointer; }
@@ -175,75 +135,34 @@
             display: inline-block; padding: 3px 6px; background: #e0e7ff; 
             color: #4338ca; border-radius: 4px; margin-right: 5px; margin-bottom: 5px; font-weight: 600;
         }
-        
         .completed .task-subject { text-decoration: line-through; color: #9ca3af; }
         .completed .task-schedule { opacity: 0.5; }
         
         .task-actions { display: flex; gap: 8px; }
-        .btn-small { 
-            padding: 6px 12px; font-size: 13px; border: none; border-radius: 6px; 
-            cursor: pointer; font-weight: 600; color: white; transition: 0.2s;
-        }
+        .btn-small { padding: 6px 12px; font-size: 13px; border: none; border-radius: 6px; cursor: pointer; font-weight: 600; color: white; }
         .btn-postpone { background-color: #f59e0b; }
-        .btn-postpone:hover { background-color: #d97706; }
         .btn-delete { background-color: #ef4444; }
-        .btn-delete:hover { background-color: #dc2626; }
 
-        /* Calendar Styles */
-        .calendar-header {
-            display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px;
-        }
-        .calendar-header button {
-            padding: 8px 16px; background: white; border: 1px solid #d1d5db; 
-            border-radius: 6px; cursor: pointer; font-weight: bold;
-        }
-        .calendar-header button:hover { background: #f3f4f6; }
-        .calendar-header h2 { font-size: 20px; margin: 0; }
-        
-        .calendar-grid {
-            display: grid; grid-template-columns: repeat(7, 1fr); gap: 1px; background: #e5e7eb; border: 1px solid #e5e7eb;
-        }
-        .calendar-day-name {
-            background: #f9fafb; text-align: center; padding: 10px; font-weight: bold; font-size: 14px;
-        }
+        .calendar-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px; }
+        .calendar-header button { padding: 8px 16px; background: white; border: 1px solid #d1d5db; border-radius: 6px; cursor: pointer; font-weight: bold; }
+        .calendar-grid { display: grid; grid-template-columns: repeat(7, 1fr); gap: 1px; background: #e5e7eb; border: 1px solid #e5e7eb; }
+        .calendar-day-name { background: #f9fafb; text-align: center; padding: 10px; font-weight: bold; font-size: 14px; }
         .calendar-day-name.sun { color: var(--holiday-color); }
         .calendar-day-name.sat { color: var(--saturday-color); }
         
-        .calendar-cell {
-            background: white; min-height: 100px; padding: 5px; cursor: pointer; transition: 0.2s;
-            display: flex; flex-direction: column; gap: 2px;
-        }
-        .calendar-cell:hover { background: #f8fafc; }
+        .calendar-cell { background: white; min-height: 100px; padding: 5px; cursor: pointer; display: flex; flex-direction: column; gap: 2px; }
         .calendar-cell.empty { background: #f9fafb; cursor: default; }
-        
         .date-num { font-size: 14px; font-weight: 600; margin-bottom: 5px; text-align: right; padding-right: 5px; }
         .date-num.sun, .date-num.holiday { color: var(--holiday-color); }
         .date-num.sat { color: var(--saturday-color); }
-        .date-num.today {
-            background: var(--primary-color); color: white; border-radius: 50%;
-            display: inline-block; width: 24px; height: 24px; text-align: center; line-height: 24px;
-        }
+        .date-num.today { background: var(--primary-color); color: white; border-radius: 50%; display: inline-block; width: 24px; height: 24px; text-align: center; line-height: 24px; }
         
-        .cal-event {
-            font-size: 11px; padding: 3px 5px; border-radius: 4px; color: white;
-            white-space: nowrap; overflow: hidden; text-overflow: ellipsis; margin-bottom: 2px;
-        }
+        .cal-event { font-size: 11px; padding: 3px 5px; border-radius: 4px; color: white; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; margin-bottom: 2px; }
         .cal-event.ebbinghaus { background-color: var(--primary-color); }
         .cal-event.custom { background-color: #10b981; }
 
-        /* Links */
-        .external-link {
-            display: inline-block; padding: 12px 24px; background: #f8fafc;
-            color: var(--primary-color); text-decoration: none; border-radius: 8px;
-            font-weight: bold; border: 1px solid #e2e8f0; transition: 0.2s;
-        }
-        .external-link:hover { background: #f1f5f9; }
-
-        /* Quiz Result */
-        .quiz-blank {
-            border: none; border-bottom: 2px solid var(--primary-color);
-            width: 80px; text-align: center; outline: none; margin: 0 5px; font-weight: bold;
-        }
+        .external-link { display: inline-block; padding: 12px 24px; background: #f8fafc; color: var(--primary-color); text-decoration: none; border-radius: 8px; font-weight: bold; border: 1px solid #e2e8f0; }
+        .quiz-blank { border: none; border-bottom: 2px solid var(--primary-color); width: 80px; text-align: center; outline: none; margin: 0 5px; font-weight: bold; }
         #quiz-result { margin-top: 20px; line-height: 1.8; font-size: 16px; }
     </style>
 </head>
@@ -254,14 +173,10 @@
         <div class="modal-content">
             <h2 style="text-align: center; color: var(--primary-color); font-size: 28px; margin-bottom: 5px;">SKKUDY</h2>
             <p style="text-align: center; font-size: 14px; color: var(--text-muted);">클라우드 연동 맞춤형 학습 관리</p>
-            
             <input type="text" id="login-id" placeholder="아이디 (이름)" required>
             <input type="password" id="login-pw" placeholder="비밀번호" required>
             <button id="login-btn">로그인</button>
-            
-            <div class="modal-switch" id="go-to-signup">
-                계정이 없으신가요? <span>회원가입하기</span>
-            </div>
+            <div class="modal-switch" id="go-to-signup">계정이 없으신가요? <span>회원가입하기</span></div>
         </div>
     </div>
 
@@ -270,7 +185,6 @@
         <div class="modal-content">
             <h2 style="text-align: center; color: var(--primary-color); font-size: 28px; margin-bottom: 5px;">회원가입</h2>
             <p style="text-align: center; font-size: 14px; color: var(--text-muted);">클라우드에 계정을 생성합니다.</p>
-            
             <input type="text" id="signup-id" placeholder="아이디 (이름)" required>
             <input type="password" id="signup-pw" placeholder="비밀번호" required>
             <input type="text" id="signup-univ" placeholder="출신대학 (예: 성균관대학교)" required>
@@ -278,32 +192,24 @@
             <label for="signup-exam-date" style="font-size: 13px; color: #4b5563;">시험일:</label>
             <input type="date" id="signup-exam-date" required>
             <button id="signup-btn">가입 완료</button>
-            
-            <div class="modal-switch" id="go-to-login">
-                이미 계정이 있으신가요? <span>로그인하기</span>
-            </div>
+            <div class="modal-switch" id="go-to-login">이미 계정이 있으신가요? <span>로그인하기</span></div>
         </div>
     </div>
 
-    <!-- 검은화면 전체화면 타이머 모드 -->
+    <!-- 전체화면 타이머 -->
     <div id="focus-fullscreen" class="hidden">
         <div id="fullscreen-timer-display">25:00</div>
-        <div class="fullscreen-btns">
-            <button id="fs-exit" style="background: #4b5563; color: #fff;">나가기</button>
-        </div>
+        <div class="fullscreen-btns"><button id="fs-exit" style="background: #4b5563; color: #fff;">나가기</button></div>
     </div>
 
-    <!-- 검은화면 전체화면 스톱워치 모드 -->
+    <!-- 전체화면 스톱워치 -->
     <div id="stopwatch-fullscreen" class="hidden">
         <div id="fullscreen-stopwatch-display">00:00:00</div>
-        <div class="fullscreen-btns">
-            <button id="sw-fs-exit" style="background: #4b5563; color: #fff;">나가기</button>
-        </div>
+        <div class="fullscreen-btns"><button id="sw-fs-exit" style="background: #4b5563; color: #fff;">나가기</button></div>
     </div>
 
-    <!-- 메인 애플리케이션 -->
+    <!-- 메인 앱 컨테이너 -->
     <div id="app-container" class="hidden">
-        <!-- 사이드바 -->
         <nav id="sidebar">
             <div class="logo">SKKUDY</div>
             <ul class="menu">
@@ -317,7 +223,6 @@
             </ul>
         </nav>
 
-        <!-- 메인 콘텐츠 -->
         <main id="main-content">
             <header>
                 <div class="greeting">
@@ -330,15 +235,14 @@
             <div class="content-sections">
                 <div class="date-header" id="today-date-display"></div>
 
-                <!-- 1. 대시보드 뷰 -->
+                <!-- 대시보드 -->
                 <div id="view-dashboard">
                     <div class="dashboard-grid">
                         <section class="card input-section">
                             <h3>학습 기록 및 복습 일정 생성 (에빙하우스 연구 기반)</h3>
-                            <p style="font-size:13px; color:#6b7280; margin-bottom:15px;">* 연구에 기반하여 가장 효율적인 복습주기(1일, 3일, 7일, 14일, 30일)를 캘린더에 자동 기록합니다.</p>
                             <div class="input-group">
                                 <div class="input-row">
-                                    <input type="date" id="study-date" title="학습한 날짜를 선택하세요">
+                                    <input type="date" id="study-date">
                                     <input type="text" id="study-subject" placeholder="학습 과목 (예: 경제학 - 미시경제 파트)">
                                 </div>
                                 <textarea id="study-content" placeholder="학습 내용을 요약해서 입력하세요..."></textarea>
@@ -360,12 +264,11 @@
                     </section>
                 </div>
 
-                <!-- 2. 타이머 뷰 -->
+                <!-- 타이머 -->
                 <div id="view-timer-view" class="hidden">
                     <section class="card" style="text-align: center; max-width: 600px; margin: 0 auto;">
                         <h3>뽀모도로 집중 타이머 ⏱️</h3>
                         <div class="time-setting-box">
-                            <label for="timer-min-input" style="font-size: 14px; font-weight: bold; color: #4b5563;">설정 시간(분):</label>
                             <input type="number" id="timer-min-input" value="25" min="1" max="180">
                             <button id="set-time-btn" class="btn-small" style="background: var(--primary-color);">시간 적용</button>
                         </div>
@@ -374,12 +277,12 @@
                             <button class="btn-start" id="timer-start">시작</button>
                             <button class="btn-pause" id="timer-pause">일시정지</button>
                             <button class="btn-reset" id="timer-reset">초기화</button>
-                            <button class="btn-fullscreen" id="timer-fullscreen-btn">집중 모드 (검은화면)</button>
+                            <button class="btn-fullscreen" id="timer-fullscreen-btn">집중 모드</button>
                         </div>
                     </section>
                 </div>
 
-                <!-- 3. 스톱워치 뷰 -->
+                <!-- 스톱워치 -->
                 <div id="view-stopwatch-view" class="hidden">
                     <section class="card" style="text-align: center; max-width: 600px; margin: 0 auto;">
                         <h3>스톱워치 ⏱️</h3>
@@ -388,12 +291,12 @@
                             <button class="btn-start" id="sw-start">시작</button>
                             <button class="btn-pause" id="sw-pause">중지</button>
                             <button class="btn-reset" id="sw-reset">초기화</button>
-                            <button class="btn-fullscreen" id="sw-fullscreen-btn">집중 모드 (검은화면)</button>
+                            <button class="btn-fullscreen" id="sw-fullscreen-btn">집중 모드</button>
                         </div>
                     </section>
                 </div>
 
-                <!-- 4. 캘린더 뷰 -->
+                <!-- 캘린더 -->
                 <div id="view-calendar" class="hidden">
                     <section class="card">
                         <div class="calendar-header">
@@ -405,11 +308,10 @@
                     </section>
                 </div>
                 
-                <!-- 5. AI 퀴즈 뷰 -->
+                <!-- 퀴즈 -->
                 <div id="view-quiz" class="hidden">
                     <section class="card">
                         <h3>빈칸 채우기 퀴즈 생성기</h3>
-                        <p style="font-size:13px; color:#6b7280; margin-bottom:15px;">공부한 텍스트 자료를 넣으면 주요 단어를 빈칸으로 만들어 줍니다.</p>
                         <div class="input-group">
                             <textarea id="quiz-source" placeholder="공부한 자료를 텍스트로 붙여넣으세요..."></textarea>
                             <button id="generate-quiz-btn">퀴즈 생성하기</button>
@@ -425,7 +327,9 @@
         document.addEventListener('DOMContentLoaded', () => {
             const today = new Date();
             const todayISO = today.toISOString().split('T')[0];
-            const API_BASE_URL = 'https://skkudy.pages.dev';
+            
+            // 주소 문제 원천 차단: 현재 도메인 경로 기준으로 API 통신 자동 세팅
+            const API_BASE_URL = ''; 
             
             let currentUser = null;
             let calendarEvents = {}; 
@@ -435,131 +339,61 @@
             document.getElementById('study-date').value = todayISO;
             const updateTodayDate = () => {
                 const days = ['일', '월', '화', '수', '목', '금', '토'];
-                const dateString = `${today.getFullYear()}년 ${today.getMonth() + 1}월 ${today.getDate()}일 ${days[today.getDay()]}요일`;
-                document.getElementById('today-date-display').textContent = dateString;
+                document.getElementById('today-date-display').textContent = `${today.getFullYear()}년 ${today.getMonth() + 1}월 ${today.getDate()}일 ${days[today.getDay()]}요일`;
             };
             updateTodayDate();
 
-            // ==================== 타이머 로직 ====================
-            let timerSeconds = 25 * 60;
-            let timerInterval = null;
-            const timerDisplay = document.getElementById('timer-display');
-            const fsTimerDisplay = document.getElementById('fullscreen-timer-display');
-
+            // 타이머 로직
+            let timerSeconds = 25 * 60, timerInterval = null;
+            const timerDisplay = document.getElementById('timer-display'), fsTimerDisplay = document.getElementById('fullscreen-timer-display');
             const updateTimerDisplay = () => {
                 const m = Math.floor(timerSeconds / 60).toString().padStart(2, '0');
                 const s = (timerSeconds % 60).toString().padStart(2, '0');
-                const timeStr = `${m}:${s}`;
-                timerDisplay.textContent = timeStr;
-                fsTimerDisplay.textContent = timeStr;
+                timerDisplay.textContent = fsTimerDisplay.textContent = `${m}:${s}`;
             };
 
             document.getElementById('set-time-btn').addEventListener('click', () => {
                 const minInput = parseInt(document.getElementById('timer-min-input').value);
-                if(isNaN(minInput) || minInput <= 0) {
-                    alert("올바른 분(Minute)을 입력하세요.");
-                    return;
-                }
-                clearInterval(timerInterval);
-                timerInterval = null;
-                timerSeconds = minInput * 60;
-                updateTimerDisplay();
-                alert(`타이머가 ${minInput}분으로 설정되었습니다.`);
+                if(isNaN(minInput) || minInput <= 0) return alert("올바른 분을 입력하세요.");
+                clearInterval(timerInterval); timerInterval = null;
+                timerSeconds = minInput * 60; updateTimerDisplay();
             });
 
-            const startTimerAction = () => {
+            document.getElementById('timer-start').addEventListener('click', () => {
                 if (timerInterval) return;
                 timerInterval = setInterval(() => {
-                    if (timerSeconds > 0) {
-                        timerSeconds--;
-                        updateTimerDisplay();
-                    } else {
-                        clearInterval(timerInterval);
-                        timerInterval = null;
-                        document.getElementById('focus-fullscreen').classList.add('hidden');
-                        alert("⏰ 타이머 종료! 설정된 집중 시간이 완료되었습니다.");
-                    }
+                    if (timerSeconds > 0) { timerSeconds--; updateTimerDisplay(); }
+                    else { clearInterval(timerInterval); timerInterval = null; document.getElementById('focus-fullscreen').classList.add('hidden'); alert("타이머 종료!"); }
                 }, 1000);
-            };
-
-            const pauseTimerAction = () => {
-                clearInterval(timerInterval);
-                timerInterval = null;
-            };
-
-            const resetTimerAction = () => {
-                clearInterval(timerInterval);
-                timerInterval = null;
-                const minInput = parseInt(document.getElementById('timer-min-input').value) || 25;
-                timerSeconds = minInput * 60;
-                updateTimerDisplay();
-            };
-
-            document.getElementById('timer-start').addEventListener('click', startTimerAction);
-            document.getElementById('timer-pause').addEventListener('click', pauseTimerAction);
-            document.getElementById('timer-reset').addEventListener('click', resetTimerAction);
-
-            document.getElementById('timer-fullscreen-btn').addEventListener('click', () => {
-                document.getElementById('focus-fullscreen').classList.remove('hidden');
             });
-            document.getElementById('fs-exit').addEventListener('click', () => {
-                document.getElementById('focus-fullscreen').classList.add('hidden');
-            });
+            document.getElementById('timer-pause').addEventListener('click', () => { clearInterval(timerInterval); timerInterval = null; });
+            document.getElementById('timer-reset').addEventListener('click', () => { clearInterval(timerInterval); timerInterval = null; timerSeconds = (parseInt(document.getElementById('timer-min-input').value) || 25) * 60; updateTimerDisplay(); });
+            document.getElementById('timer-fullscreen-btn').addEventListener('click', () => document.getElementById('focus-fullscreen').classList.remove('hidden'));
+            document.getElementById('fs-exit').addEventListener('click', () => document.getElementById('focus-fullscreen').classList.add('hidden'));
 
-            // ==================== 스톱워치 로직 ====================
-            let swSeconds = 0;
-            let swInterval = null;
-            const swDisplay = document.getElementById('stopwatch-display');
-            const fsSwDisplay = document.getElementById('fullscreen-stopwatch-display');
-
+            // 스톱워치 로직
+            let swSeconds = 0, swInterval = null;
+            const swDisplay = document.getElementById('stopwatch-display'), fsSwDisplay = document.getElementById('fullscreen-stopwatch-display');
             const updateStopwatchDisplay = () => {
                 const h = Math.floor(swSeconds / 3600).toString().padStart(2, '0');
                 const m = Math.floor((swSeconds % 3600) / 60).toString().padStart(2, '0');
                 const s = (swSeconds % 60).toString().padStart(2, '0');
-                const timeStr = `${h}:${m}:${s}`;
-                swDisplay.textContent = timeStr;
-                fsSwDisplay.textContent = timeStr;
+                swDisplay.textContent = fsSwDisplay.textContent = `${h}:${m}:${s}`;
             };
-
             document.getElementById('sw-start').addEventListener('click', () => {
                 if (swInterval) return;
-                swInterval = setInterval(() => {
-                    swSeconds++;
-                    updateStopwatchDisplay();
-                }, 1000);
+                swInterval = setInterval(() => { swSeconds++; updateStopwatchDisplay(); }, 1000);
             });
+            document.getElementById('sw-pause').addEventListener('click', () => { clearInterval(swInterval); swInterval = null; });
+            document.getElementById('sw-reset').addEventListener('click', () => { clearInterval(swInterval); swInterval = null; swSeconds = 0; updateStopwatchDisplay(); });
+            document.getElementById('sw-fullscreen-btn').addEventListener('click', () => document.getElementById('stopwatch-fullscreen').classList.remove('hidden'));
+            document.getElementById('sw-fs-exit').addEventListener('click', () => document.getElementById('stopwatch-fullscreen').classList.add('hidden'));
 
-            document.getElementById('sw-pause').addEventListener('click', () => {
-                clearInterval(swInterval);
-                swInterval = null;
-            });
+            // 모달 전환
+            document.getElementById('go-to-signup').addEventListener('click', () => { document.getElementById('login-modal').classList.add('hidden'); document.getElementById('signup-modal').classList.remove('hidden'); });
+            document.getElementById('go-to-login').addEventListener('click', () => { document.getElementById('signup-modal').classList.add('hidden'); document.getElementById('login-modal').classList.remove('hidden'); });
 
-            document.getElementById('sw-reset').addEventListener('click', () => {
-                clearInterval(swInterval);
-                swInterval = null;
-                swSeconds = 0;
-                updateStopwatchDisplay();
-            });
-
-            document.getElementById('sw-fullscreen-btn').addEventListener('click', () => {
-                document.getElementById('stopwatch-fullscreen').classList.remove('hidden');
-            });
-            document.getElementById('sw-fs-exit').addEventListener('click', () => {
-                document.getElementById('stopwatch-fullscreen').classList.add('hidden');
-            });
-
-            // ==================== 모달 전환 토글 ====================
-            document.getElementById('go-to-signup').addEventListener('click', () => {
-                document.getElementById('login-modal').classList.add('hidden');
-                document.getElementById('signup-modal').classList.remove('hidden');
-            });
-            document.getElementById('go-to-login').addEventListener('click', () => {
-                document.getElementById('signup-modal').classList.add('hidden');
-                document.getElementById('login-modal').classList.remove('hidden');
-            });
-
-            // ==================== 실시간 클라우드 연동 API (회원가입, 로그인, 데이터 동기화) ====================
-            const API_BASE_URL = 'https://skkudy.pages.dev/';
+            // API 연동 (회원가입 / 로그인)
             document.getElementById('signup-btn').addEventListener('click', async () => {
                 const id = document.getElementById('signup-id').value.trim();
                 const pw = document.getElementById('signup-pw').value;
@@ -567,10 +401,7 @@
                 const exam = document.getElementById('signup-exam').value.trim();
                 const examDateStr = document.getElementById('signup-exam-date').value;
 
-                if(!id || !pw || !univ || !exam || !examDateStr) {
-                    alert("모든 정보를 입력해주세요.");
-                    return;
-                }
+                if(!id || !pw || !univ || !exam || !examDateStr) return alert("모든 정보를 입력해주세요.");
 
                 try {
                     const res = await fetch(`${API_BASE_URL}/api/signup`, {
@@ -580,14 +411,14 @@
                     });
                     const data = await res.json();
                     if(data.success) {
-                        alert("클라우드 회원가입이 완료되었습니다! 로그인해주세요.");
+                        alert("회원가입 완료! 로그인해주세요.");
                         document.getElementById('signup-modal').classList.add('hidden');
                         document.getElementById('login-modal').classList.remove('hidden');
                     } else {
                         alert(data.message || "회원가입 실패");
                     }
                 } catch(e) {
-                    alert("클라우드 서버 통신 오류가 발생했습니다.");
+                    alert("서버 통신 오류가 발생했습니다.");
                 }
             });
 
@@ -607,18 +438,15 @@
                         localStorage.setItem('skkudy_session', currentUser);
                         initApp(data.user);
                     } else {
-                        alert("아이디 또는 비밀번호가 일치하지 않습니다.");
+                        alert("아이디 또는 비밀번호가 틀렸습니다.");
                     }
                 } catch(e) {
-                    alert("서버 연결에 실패했습니다.");
+                    alert("로그인 통신 오류 발생");
                 }
             });
 
             document.getElementById('logout-btn').addEventListener('click', () => {
-                if(confirm("로그아웃 하시겠습니까?")) {
-                    localStorage.removeItem('skkudy_session');
-                    location.reload();
-                }
+                if(confirm("로그아웃 하시겠습니까?")) { localStorage.removeItem('skkudy_session'); location.reload(); }
             });
 
             const initApp = (userData) => {
@@ -626,25 +454,13 @@
                 document.getElementById('display-name').textContent = userData.name;
                 document.getElementById('display-exam').textContent = userData.exam;
 
-                const examDate = new Date(userData.examDateStr);
-                const diffTime = examDate.getTime() - new Date(todayISO).getTime();
-                const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
-
+                const diffDays = Math.ceil((new Date(userData.examDateStr).getTime() - new Date(todayISO).getTime()) / (1000 * 60 * 60 * 24));
                 const dDayBadge = document.getElementById('d-day-badge');
-                if (diffDays > 0) {
-                    dDayBadge.textContent = `D-${diffDays}`;
-                } else if (diffDays === 0) {
-                    dDayBadge.textContent = "드디어 노력의 성과를 보이는 날 입니다!";
-                    dDayBadge.style.fontSize = "16px";
-                } else {
-                    dDayBadge.textContent = `D+${Math.abs(diffDays)} (시험 종료)`;
-                    dDayBadge.style.background = "#6b7280";
-                }
+                dDayBadge.textContent = diffDays > 0 ? `D-${diffDays}` : (diffDays === 0 ? "D-Day!" : `D+${Math.abs(diffDays)}`);
 
                 document.getElementById('login-modal').classList.add('hidden');
                 document.getElementById('signup-modal').classList.add('hidden');
                 document.getElementById('app-container').classList.remove('hidden');
-
                 loadCloudUserData();
             };
 
@@ -652,73 +468,50 @@
                 try {
                     const res = await fetch(`${API_BASE_URL}/api/user-data?id=${encodeURIComponent(currentUser)}`);
                     const data = await res.json();
-                    
                     calendarEvents = data.events || {};
                     const savedRecords = data.records || [];
-
                     const reviewList = document.getElementById('review-list');
-                    reviewList.innerHTML = `<li class="empty-msg" id="empty-list-msg" style="${savedRecords.length > 0 ? 'display:none;' : ''}">기록된 학습 내역이 없습니다. 새로운 학습을 기록해보세요!</li>`;
-
-                    savedRecords.forEach(rec => {
-                        createStudyRecordElement(rec.baseDateStr, rec.subject, rec.completed, false);
-                    });
+                    reviewList.innerHTML = `<li class="empty-msg" id="empty-list-msg" style="${savedRecords.length > 0 ? 'display:none;' : ''}">기록된 학습 내역이 없습니다.</li>`;
+                    savedRecords.forEach(rec => createStudyRecordElement(rec.baseDateStr, rec.subject, rec.completed, false));
                     renderCalendar();
-                } catch(e) {
-                    console.error("데이터 로드 오류", e);
-                }
+                } catch(e) { console.error(e); }
             };
 
             const saveCloudUserData = async () => {
-                const recordElements = document.querySelectorAll('#review-list li:not(.empty-msg)');
                 const records = [];
-                recordElements.forEach(li => {
-                    const subject = li.querySelector('.task-subject').textContent;
-                    const baseDateStr = li.querySelector('.base-date-text').textContent;
-                    const completed = li.classList.contains('completed');
-                    records.push({ subject, baseDateStr, completed });
+                document.querySelectorAll('#review-list li:not(.empty-msg)').forEach(li => {
+                    records.push({
+                        subject: li.querySelector('.task-subject').textContent,
+                        baseDateStr: li.querySelector('.base-date-text').textContent,
+                        completed: li.classList.contains('completed')
+                    });
                 });
-
                 try {
                     await fetch(`${API_BASE_URL}/api/save-data`, {
                         method: 'POST',
                         headers: { 'Content-Type': 'application/json' },
-                        body: JSON.stringify({
-                            id: currentUser,
-                            events: calendarEvents,
-                            records: records
-                        })
+                        body: JSON.stringify({ id: currentUser, events: calendarEvents, records })
                     });
-                } catch(e) {
-                    console.error("클라우드 저장 실패", e);
-                }
+                } catch(e) { console.error(e); }
             };
 
             const createStudyRecordElement = (baseDateStr, subject, isCompleted = false, shouldSave = true) => {
                 const li = document.createElement('li');
                 if(isCompleted) li.classList.add('completed');
-                
                 let baseDateObj = new Date(baseDateStr);
 
                 const generateScheduleHTML = (dateObj) => {
-                    let html = `<div class="task-schedule">`;
-                    html += `<strong>[복습일정]</strong> `;
+                    let html = `<div class="task-schedule"><strong>[복습일정]</strong> `;
                     ebbinghausIntervals.forEach((interval, idx) => {
                         let reviewDate = new Date(dateObj);
                         reviewDate.setDate(reviewDate.getDate() + interval);
-                        let m = reviewDate.getMonth() + 1;
-                        let d = reviewDate.getDate();
-                        html += `<span class="schedule-badge">${idx+1}차: ${m}/${d}</span>`;
-                        
-                        const dateKey = reviewDate.toISOString().split('T')[0];
+                        html += `<span class="schedule-badge">${idx+1}차: ${reviewDate.getMonth()+1}/${reviewDate.getDate()}</span>`;
+                        let dateKey = reviewDate.toISOString().split('T')[0];
                         if(!calendarEvents[dateKey]) calendarEvents[dateKey] = [];
-                        
-                        const eventTitle = `[${idx+1}차] ${subject}`;
-                        if(!calendarEvents[dateKey].some(ev => ev.title === eventTitle)) {
-                            calendarEvents[dateKey].push({ title: eventTitle, type: 'ebbinghaus' });
-                        }
+                        let eventTitle = `[${idx+1}차] ${subject}`;
+                        if(!calendarEvents[dateKey].some(ev => ev.title === eventTitle)) calendarEvents[dateKey].push({ title: eventTitle, type: 'ebbinghaus' });
                     });
-                    html += `</div>`;
-                    return html;
+                    return html + `</div>`;
                 };
 
                 li.innerHTML = `
@@ -736,200 +529,101 @@
                     <div class="schedule-container">${generateScheduleHTML(baseDateObj)}</div>
                 `;
 
-                const checkbox = li.querySelector('.task-check');
-                const deleteBtn = li.querySelector('.btn-delete');
-                const postponeBtn = li.querySelector('.btn-postpone');
-                const scheduleContainer = li.querySelector('.schedule-container');
-                const baseDateText = li.querySelector('.base-date-text');
-
-                checkbox.addEventListener('change', (e) => {
+                li.querySelector('.task-check').addEventListener('change', (e) => {
                     e.target.checked ? li.classList.add('completed') : li.classList.remove('completed');
                     saveCloudUserData();
                 });
-
-                deleteBtn.addEventListener('click', () => {
+                li.querySelector('.btn-delete').addEventListener('click', () => {
                     li.remove();
-                    if(document.getElementById('review-list').querySelectorAll('li:not(.empty-msg)').length === 0) {
-                        document.getElementById('empty-list-msg').style.display = 'block';
-                    }
-                    saveCloudUserData();
-                    renderCalendar();
+                    if(document.querySelectorAll('#review-list li:not(.empty-msg)').length === 0) document.getElementById('empty-list-msg').style.display = 'block';
+                    saveCloudUserData(); renderCalendar();
                 });
-
-                postponeBtn.addEventListener('click', () => {
-                    checkbox.checked = false; 
+                li.querySelector('.btn-postpone').addEventListener('click', () => {
                     li.classList.remove('completed');
                     baseDateObj.setDate(baseDateObj.getDate() + 1);
-                    const newBaseDateStr = baseDateObj.toISOString().split('T')[0];
-                    baseDateText.textContent = newBaseDateStr;
-                    scheduleContainer.innerHTML = generateScheduleHTML(baseDateObj);
-                    renderCalendar();
-                    saveCloudUserData();
-                    alert('일정이 하루 연기되었습니다.');
+                    li.querySelector('.base-date-text').textContent = baseDateObj.toISOString().split('T')[0];
+                    li.querySelector('.schedule-container').innerHTML = generateScheduleHTML(baseDateObj);
+                    renderCalendar(); saveCloudUserData();
                 });
 
                 document.getElementById('empty-list-msg').style.display = 'none';
                 document.getElementById('review-list').appendChild(li);
-                
-                if(shouldSave) {
-                    saveCloudUserData();
-                    renderCalendar();
-                }
+                if(shouldSave) { saveCloudUserData(); renderCalendar(); }
             };
 
             document.getElementById('save-study-btn').addEventListener('click', () => {
-                const date = document.getElementById('study-date').value;
-                const subject = document.getElementById('study-subject').value;
-                if(!subject || !date) { alert("날짜와 과목을 모두 입력하세요."); return; }
-                
+                const date = document.getElementById('study-date').value, subject = document.getElementById('study-subject').value;
+                if(!subject || !date) return alert("날짜와 과목을 입력하세요.");
                 createStudyRecordElement(date, subject, false, true);
                 document.getElementById('study-subject').value = '';
                 document.getElementById('study-content').value = '';
-                alert("기록 완료! 복습 일정이 추가되었습니다.");
             });
 
-            // ==================== 캘린더 로직 ====================
+            // 캘린더
             let currentCalDate = new Date();
-            const isHoliday = (month, date) => {
-                const md = `${String(month).padStart(2, '0')}-${String(date).padStart(2, '0')}`;
-                return staticHolidays.includes(md);
-            };
-
             const renderCalendar = () => {
-                const grid = document.getElementById('calendar-grid');
-                grid.innerHTML = '';
-                const year = currentCalDate.getFullYear();
-                const month = currentCalDate.getMonth();
-                
+                const grid = document.getElementById('calendar-grid'); grid.innerHTML = '';
+                const year = currentCalDate.getFullYear(), month = currentCalDate.getMonth();
                 document.getElementById('calendar-month-year').textContent = `${year}년 ${month + 1}월`;
-
-                ['일', '월', '화', '수', '목', '금', '토'].forEach((day, idx) => {
-                    const div = document.createElement('div');
-                    div.className = `calendar-day-name ${idx === 0 ? 'sun' : ''} ${idx === 6 ? 'sat' : ''}`;
-                    div.textContent = day;
-                    grid.appendChild(div);
-                });
-
-                const firstDay = new Date(year, month, 1).getDay();
-                const daysInMonth = new Date(year, month + 1, 0).getDate();
-
-                for(let i=0; i<firstDay; i++) {
-                    const div = document.createElement('div');
-                    div.className = 'calendar-cell empty';
-                    grid.appendChild(div);
-                }
-
+                ['일', '월', '화', '수', '목', '금', '토'].forEach((d, i) => grid.innerHTML += `<div class="calendar-day-name ${i===0?'sun':i===6?'sat':''}">${d}</div>`);
+                
+                const firstDay = new Date(year, month, 1).getDay(), daysInMonth = new Date(year, month + 1, 0).getDate();
+                for(let i=0; i<firstDay; i++) grid.innerHTML += `<div class="calendar-cell empty"></div>`;
+                
                 for(let date=1; date<=daysInMonth; date++) {
-                    const cellDateObj = new Date(year, month, date);
-                    const dayOfWeek = cellDateObj.getDay();
-                    const dateString = cellDateObj.toISOString().split('T')[0];
-
-                    const div = document.createElement('div');
-                    div.className = 'calendar-cell';
-                    
+                    const cellDate = new Date(year, month, date), dateString = cellDate.toISOString().split('T')[0];
+                    const div = document.createElement('div'); div.className = 'calendar-cell';
                     let numClass = 'date-num';
-                    if (dayOfWeek === 0 || isHoliday(month+1, date)) numClass += ' holiday';
-                    if (dayOfWeek === 6) numClass += ' sat';
+                    if (cellDate.getDay() === 0 || staticHolidays.includes(`${String(month+1).padStart(2,'0')}-${String(date).padStart(2,'0')}`)) numClass += ' holiday';
+                    if (cellDate.getDay() === 6) numClass += ' sat';
                     if (dateString === todayISO) numClass += ' today';
-
+                    
                     div.innerHTML = `<div class="${numClass}">${date}</div>`;
-
                     if (calendarEvents[dateString]) {
-                        calendarEvents[dateString].forEach(ev => {
-                            const evDiv = document.createElement('div');
-                            evDiv.className = `cal-event ${ev.type}`;
-                            evDiv.textContent = ev.title;
-                            div.appendChild(evDiv);
-                        });
+                        calendarEvents[dateString].forEach(ev => div.innerHTML += `<div class="cal-event ${ev.type}">${ev.title}</div>`);
                     }
-
                     div.addEventListener('click', () => {
-                        const eventTitle = prompt(`${year}년 ${month+1}월 ${date}일에 추가할 일정을 입력하세요:`);
-                        if (eventTitle) {
+                        const title = prompt("추가할 일정 입력:");
+                        if(title) {
                             if(!calendarEvents[dateString]) calendarEvents[dateString] = [];
-                            calendarEvents[dateString].push({ title: eventTitle, type: 'custom' });
-                            renderCalendar();
-                            saveCloudUserData();
+                            calendarEvents[dateString].push({ title, type: 'custom' });
+                            renderCalendar(); saveCloudUserData();
                         }
                     });
                     grid.appendChild(div);
                 }
             };
+            document.getElementById('prev-month').addEventListener('click', () => { currentCalDate.setMonth(currentCalDate.getMonth() - 1); renderCalendar(); });
+            document.getElementById('next-month').addEventListener('click', () => { currentCalDate.setMonth(currentCalDate.getMonth() + 1); renderCalendar(); });
 
-            document.getElementById('prev-month').addEventListener('click', () => {
-                currentCalDate.setMonth(currentCalDate.getMonth() - 1);
-                renderCalendar();
-            });
-            document.getElementById('next-month').addEventListener('click', () => {
-                currentCalDate.setMonth(currentCalDate.getMonth() + 1);
-                renderCalendar();
-            });
-
-            // ==================== AI 퀴즈 및 네비게이션 ====================
+            // 퀴즈
             document.getElementById('generate-quiz-btn').addEventListener('click', () => {
-                const sourceText = document.getElementById('quiz-source').value;
-                if(!sourceText) { alert("공부한 자료를 입력하세요."); return; }
-
-                const words = sourceText.split(/\s+/);
-                const quizWords = words.map(word => {
-                    const cleanWord = word.replace(/[.,!?]/g, '');
-                    if (cleanWord.length >= 3 && Math.random() > 0.6) { 
-                        return `<input type="text" class="quiz-blank" placeholder="?" data-answer="${cleanWord}">` + word.replace(cleanWord, ''); 
-                    }
-                    return word;
-                });
-                document.getElementById('quiz-result').innerHTML = quizWords.join(' ');
+                const text = document.getElementById('quiz-source').value;
+                if(!text) return alert("내용을 입력하세요.");
+                document.getElementById('quiz-result').innerHTML = text.split(/\s+/).map(w => w.length >= 3 && Math.random() > 0.6 ? `<input type="text" class="quiz-blank" placeholder="?">` : w).join(' ');
             });
 
-            const menuItems = document.querySelectorAll('.menu li[data-target]');
-            const views = {
-                dashboard: document.getElementById('view-dashboard'),
-                'timer-view': document.getElementById('view-timer-view'),
-                'stopwatch-view': document.getElementById('view-stopwatch-view'),
-                calendar: document.getElementById('view-calendar'),
-                quiz: document.getElementById('view-quiz')
-            };
-
-            menuItems.forEach(item => {
+            // 메뉴 전환
+            document.querySelectorAll('.menu li[data-target]').forEach(item => {
                 item.addEventListener('click', (e) => {
-                    menuItems.forEach(m => m.classList.remove('active'));
+                    document.querySelectorAll('.menu li').forEach(m => m.classList.remove('active'));
                     e.target.classList.add('active');
                     const target = e.target.getAttribute('data-target');
-                    
-                    if (target === 'quotes') {
-                        const quotes = [
-                            "성공은 매일 반복된 작은 노력들의 합이다. - 로버트 콜리어",
-                            "가장 큰 위험은 위험을 감수하지 않는 것이다. - 마크 저커버그",
-                            "오늘 걷지 않으면 내일은 뛰어야 한다.",
-                            "포기하는 그 순간이 시합 종료다."
-                        ];
-                        alert("오늘의 명언: \n\n" + quotes[Math.floor(Math.random() * quotes.length)]);
+                    if(target === 'quotes') {
+                        alert("오늘의 명언:\n\n성공은 매일 반복된 작은 노력들의 합이다.");
                         return;
                     }
-
-                    Object.values(views).forEach(v => v.classList.add('hidden'));
-                    document.getElementById('today-date-display').style.display = 'none';
-
-                    if (views[target]) {
-                        views[target].classList.remove('hidden');
-                        if(target === 'dashboard') {
-                            document.getElementById('today-date-display').style.display = 'block';
-                        }
-                        if(target === 'calendar') {
-                            renderCalendar();
-                        }
-                    }
+                    Object.values({dashboard: 'view-dashboard', 'timer-view': 'view-timer-view', 'stopwatch-view': 'view-stopwatch-view', calendar: 'view-calendar', quiz: 'view-quiz'}).forEach(id => document.getElementById(id).classList.add('hidden'));
+                    document.getElementById('today-date-display').style.display = target === 'dashboard' ? 'block' : 'none';
+                    document.getElementById(`view-${target}`).classList.remove('hidden');
+                    if(target === 'calendar') renderCalendar();
                 });
             });
 
-            const savedSession = localStorage.getItem('skkudy_session');
-            if (savedSession) {
-                currentUser = savedSession;
-                fetch(`${API_BASE_URL}/api/user-info?id=${encodeURIComponent(savedSession)}`)
-                    .then(res => res.json())
-                    .then(data => {
-                        if (data.user) initApp(data.user);
-                    });
+            const session = localStorage.getItem('skkudy_session');
+            if (session) {
+                currentUser = session;
+                fetch(`${API_BASE_URL}/api/user-info?id=${encodeURIComponent(session)}`).then(r => r.json()).then(d => { if(d.user) initApp(d.user); });
             }
         });
     </script>
