@@ -1,16 +1,19 @@
 export async function onRequestPost(context) {
     try {
-        const { id, records, events } = await context.request.json();
+        const body = await context.request.json();
+        const { id, events, records } = body;
         const kv = context.env.USERS;
 
         const dataStr = await kv.get(id);
         if (!dataStr) {
-            return new Response(JSON.stringify({ success: false }), { status: 404 });
+            return new Response(JSON.stringify({ success: false, message: "사용자를 찾을 수 없습니다." }), {
+                headers: { 'Content-Type': 'application/json' }
+            });
         }
 
-        const user = JSON.parse(dataStr);
-        user.records = records;
+        let user = JSON.parse(dataStr);
         user.events = events;
+        user.records = records;
 
         await kv.put(id, JSON.stringify(user));
 
@@ -18,6 +21,9 @@ export async function onRequestPost(context) {
             headers: { 'Content-Type': 'application/json' }
         });
     } catch (e) {
-        return new Response(JSON.stringify({ success: false, message: e.message }), { status: 500 });
+        return new Response(JSON.stringify({ success: false, message: e.message }), {
+            headers: { 'Content-Type': 'application/json' },
+            status: 500
+        });
     }
 }
