@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>SKKUDY - 클라우드 연동 맞춤형 학습 관리</title>
+    <title>SKKUDY - 맞춤형 학습 관리</title>
     <style>
         :root {
             --primary-color: #2563eb;
@@ -22,7 +22,6 @@
         body { background-color: var(--bg-color); color: var(--text-main); }
         .hidden { display: none !important; }
 
-        /* Modal Styles */
         .modal-overlay {
             position: fixed; top: 0; left: 0; width: 100%; height: 100%;
             background: rgba(0,0,0,0.5); display: flex;
@@ -41,12 +40,9 @@
             cursor: pointer; font-weight: bold; margin-top: 5px; transition: 0.2s;
         }
         .modal-content button:hover { background: var(--primary-hover); }
-        .modal-switch {
-            text-align: center; font-size: 13px; color: var(--text-muted); cursor: pointer; margin-top: 5px;
-        }
+        .modal-switch { text-align: center; font-size: 13px; color: var(--text-muted); cursor: pointer; margin-top: 5px; }
         .modal-switch span { color: var(--primary-color); font-weight: bold; }
 
-        /* Layout */
         #app-container { display: flex; height: 100vh; overflow: hidden; }
         #sidebar {
             width: 250px; background: var(--sidebar-bg); color: white;
@@ -54,12 +50,8 @@
         }
         .logo { font-size: 28px; font-weight: 900; padding: 0 20px 30px; text-align: center; color: #fff;}
         .menu { list-style: none; display: flex; flex-direction: column; height: 100%; }
-        .menu li {
-            padding: 15px 20px; cursor: pointer; color: #9ca3af; transition: 0.2s;
-        }
-        .menu li:hover, .menu li.active {
-            background: #374151; color: white; border-left: 4px solid var(--primary-color);
-        }
+        .menu li { padding: 15px 20px; cursor: pointer; color: #9ca3af; transition: 0.2s; }
+        .menu li:hover, .menu li.active { background: #374151; color: white; border-left: 4px solid var(--primary-color); }
 
         #main-content { flex: 1; padding: 40px; overflow-y: auto; }
         header {
@@ -69,16 +61,10 @@
         }
         .greeting { font-size: 20px; font-weight: 500; }
         .highlight { color: var(--primary-color); font-weight: 700; }
-        .d-day {
-            background: var(--holiday-color); color: white; padding: 10px 20px;
-            border-radius: 20px; font-size: 24px; font-weight: 900;
-        }
+        .d-day { background: var(--holiday-color); color: white; padding: 10px 20px; border-radius: 20px; font-size: 24px; font-weight: 900; }
         .date-header { font-size: 18px; color: var(--text-muted); margin-bottom: 20px; font-weight: 600;}
 
-        .card {
-            background: var(--card-bg); padding: 25px; border-radius: var(--border-radius);
-            box-shadow: 0 4px 6px -1px rgba(0,0,0,0.05); margin-bottom: 25px;
-        }
+        .card { background: var(--card-bg); padding: 25px; border-radius: var(--border-radius); box-shadow: 0 4px 6px -1px rgba(0,0,0,0.05); margin-bottom: 25px; }
         .card h3 { margin-bottom: 15px; font-size: 18px; color: #1f2937; }
         .dashboard-grid { display: grid; grid-template-columns: 1fr; gap: 25px; }
 
@@ -98,46 +84,28 @@
             background: #000; z-index: 9999; display: flex; flex-direction: column;
             justify-content: center; align-items: center; color: white;
         }
-        #fullscreen-timer-display, #fullscreen-stopwatch-display { 
-            font-size: 120px; font-weight: 700; color: #ffffff; margin-bottom: 30px; letter-spacing: 2px; 
-        }
+        #fullscreen-timer-display, #fullscreen-stopwatch-display { font-size: 120px; font-weight: 700; color: #ffffff; margin-bottom: 30px; letter-spacing: 2px; }
         .fullscreen-btns button { padding: 12px 28px; font-size: 15px; font-weight: 500; border-radius: 8px; border: none; cursor: pointer; }
 
         .input-group { display: flex; flex-direction: column; gap: 15px; }
         .input-row { display: flex; gap: 10px; }
         .input-row input { flex: 1; }
         #study-date { flex: 0 0 150px; }
-        .input-group input, .input-group textarea, #quiz-source {
-            padding: 15px; border: 1px solid #e5e7eb; border-radius: 8px; font-size: 15px; width: 100%;
-        }
+        .input-group input, .input-group textarea, #quiz-source { padding: 15px; border: 1px solid #e5e7eb; border-radius: 8px; font-size: 15px; width: 100%; }
         .input-group textarea, #quiz-source { resize: vertical; min-height: 80px; }
-        .input-group button, #generate-quiz-btn {
-            align-self: flex-end; padding: 12px 24px; background: var(--primary-color);
-            color: white; border: none; border-radius: 8px; font-weight: bold; cursor: pointer;
-        }
+        .input-group button, #generate-quiz-btn { align-self: flex-end; padding: 12px 24px; background: var(--primary-color); color: white; border: none; border-radius: 8px; font-weight: bold; cursor: pointer; }
 
         .task-list { list-style: none; }
-        .task-list li {
-            padding: 15px; border-bottom: 1px solid #f3f4f6; display: flex; 
-            flex-direction: column; gap: 10px; transition: 0.2s;
-        }
+        .task-list li { padding: 15px; border-bottom: 1px solid #f3f4f6; display: flex; flex-direction: column; gap: 10px; transition: 0.2s; }
         .empty-msg { color: var(--text-muted); text-align: center; font-style: italic; padding: 10px; }
         .task-top { display: flex; justify-content: space-between; align-items: center; }
         .task-info { display: flex; align-items: center; gap: 12px; }
         .task-info input[type="checkbox"] { width: 18px; height: 18px; cursor: pointer; }
         .task-subject { font-size: 16px; font-weight: 600; color: #1f2937; }
-        
-        .task-schedule { 
-            font-size: 13px; color: var(--text-muted); background: #f8fafc; 
-            padding: 10px; border-radius: 6px; border: 1px dashed #cbd5e1; 
-        }
-        .schedule-badge {
-            display: inline-block; padding: 3px 6px; background: #e0e7ff; 
-            color: #4338ca; border-radius: 4px; margin-right: 5px; margin-bottom: 5px; font-weight: 600;
-        }
+        .task-schedule { font-size: 13px; color: var(--text-muted); background: #f8fafc; padding: 10px; border-radius: 6px; border: 1px dashed #cbd5e1; }
+        .schedule-badge { display: inline-block; padding: 3px 6px; background: #e0e7ff; color: #4338ca; border-radius: 4px; margin-right: 5px; margin-bottom: 5px; font-weight: 600; }
         .completed .task-subject { text-decoration: line-through; color: #9ca3af; }
         .completed .task-schedule { opacity: 0.5; }
-        
         .task-actions { display: flex; gap: 8px; }
         .btn-small { padding: 6px 12px; font-size: 13px; border: none; border-radius: 6px; cursor: pointer; font-weight: 600; color: white; }
         .btn-postpone { background-color: #f59e0b; }
@@ -149,14 +117,12 @@
         .calendar-day-name { background: #f9fafb; text-align: center; padding: 10px; font-weight: bold; font-size: 14px; }
         .calendar-day-name.sun { color: var(--holiday-color); }
         .calendar-day-name.sat { color: var(--saturday-color); }
-        
         .calendar-cell { background: white; min-height: 100px; padding: 5px; cursor: pointer; display: flex; flex-direction: column; gap: 2px; }
         .calendar-cell.empty { background: #f9fafb; cursor: default; }
         .date-num { font-size: 14px; font-weight: 600; margin-bottom: 5px; text-align: right; padding-right: 5px; }
         .date-num.sun, .date-num.holiday { color: var(--holiday-color); }
         .date-num.sat { color: var(--saturday-color); }
         .date-num.today { background: var(--primary-color); color: white; border-radius: 50%; display: inline-block; width: 24px; height: 24px; text-align: center; line-height: 24px; }
-        
         .cal-event { font-size: 11px; padding: 3px 5px; border-radius: 4px; color: white; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; margin-bottom: 2px; }
         .cal-event.ebbinghaus { background-color: var(--primary-color); }
         .cal-event.custom { background-color: #10b981; }
@@ -172,7 +138,7 @@
     <div id="login-modal" class="modal-overlay">
         <div class="modal-content">
             <h2 style="text-align: center; color: var(--primary-color); font-size: 28px; margin-bottom: 5px;">SKKUDY</h2>
-            <p style="text-align: center; font-size: 14px; color: var(--text-muted);">클라우드 연동 맞춤형 학습 관리</p>
+            <p style="text-align: center; font-size: 14px; color: var(--text-muted);">맞춤형 학습 관리 시스템</p>
             <input type="text" id="login-id" placeholder="아이디 (이름)" required>
             <input type="password" id="login-pw" placeholder="비밀번호" required>
             <button id="login-btn">로그인</button>
@@ -184,11 +150,11 @@
     <div id="signup-modal" class="modal-overlay hidden">
         <div class="modal-content">
             <h2 style="text-align: center; color: var(--primary-color); font-size: 28px; margin-bottom: 5px;">회원가입</h2>
-            <p style="text-align: center; font-size: 14px; color: var(--text-muted);">클라우드에 계정을 생성합니다.</p>
+            <p style="text-align: center; font-size: 14px; color: var(--text-muted);">서버 KV에 안전하게 저장됩니다.</p>
             <input type="text" id="signup-id" placeholder="아이디 (이름)" required>
             <input type="password" id="signup-pw" placeholder="비밀번호" required>
             <input type="text" id="signup-univ" placeholder="출신대학 (예: 성균관대학교)" required>
-            <input type="text" id="signup-exam" placeholder="준비하는 시험 (예: 행정고시)" required>
+            <input type="text" id="signup-exam" placeholder="준비하는 시험 (예: 임용고시)" required>
             <label for="signup-exam-date" style="font-size: 13px; color: #4b5563;">시험일:</label>
             <input type="date" id="signup-exam-date" required>
             <button id="signup-btn">가입 완료</button>
@@ -243,7 +209,7 @@
                             <div class="input-group">
                                 <div class="input-row">
                                     <input type="date" id="study-date">
-                                    <input type="text" id="study-subject" placeholder="학습 과목 (예: 경제학 - 미시경제 파트)">
+                                    <input type="text" id="study-subject" placeholder="학습 과목 (예: 전공 국어 - 문법 파트)">
                                 </div>
                                 <textarea id="study-content" placeholder="학습 내용을 요약해서 입력하세요..."></textarea>
                                 <button id="save-study-btn">기록 및 캘린더 추가</button>
@@ -256,11 +222,6 @@
                         <ul id="review-list" class="task-list">
                             <li class="empty-msg" id="empty-list-msg">기록된 학습 내역이 없습니다. 새로운 학습을 기록해보세요!</li>
                         </ul>
-                    </section>
-
-                    <section class="card link-section">
-                        <h3>시험 합격자 수기 모음</h3>
-                        <a href="https://www.uricpa.com/GContents/CPA/InfoCenter/PassMemory/Index.asp" target="_blank" class="external-link">CPA 합격수기 보러가기 ➔</a>
                     </section>
                 </div>
 
@@ -311,10 +272,10 @@
                 <!-- 퀴즈 -->
                 <div id="view-quiz" class="hidden">
                     <section class="card">
-                        <h3>빈칸 채우기 퀴즈 생성기</h3>
+                        <h3>AI 복습 퀴즈 생성기 (OpenAI 연동)</h3>
                         <div class="input-group">
-                            <textarea id="quiz-source" placeholder="공부한 자료를 텍스트로 붙여넣으세요..."></textarea>
-                            <button id="generate-quiz-btn">퀴즈 생성하기</button>
+                            <textarea id="quiz-source" placeholder="공부한 요약본이나 개념 노트를 붙여넣으세요..."></textarea>
+                            <button id="generate-quiz-btn">AI 퀴즈 생성하기</button>
                         </div>
                         <div id="quiz-result"></div>
                     </section>
@@ -328,11 +289,9 @@
             const today = new Date();
             const todayISO = today.toISOString().split('T')[0];
             
-            // 주소 문제 원천 차단: 현재 도메인 경로 기준으로 API 통신 자동 세팅
-            const API_BASE_URL = 'https://skkudy.pages.dev/'; 
-            
             let currentUser = null;
             let calendarEvents = {}; 
+            let currentQuizAnswers = [];
             const ebbinghausIntervals = [1, 3, 7, 14, 30]; 
             const staticHolidays = ["01-01", "03-01", "05-05", "06-06", "08-15", "10-03", "10-09", "12-25"];
 
@@ -393,7 +352,7 @@
             document.getElementById('go-to-signup').addEventListener('click', () => { document.getElementById('login-modal').classList.add('hidden'); document.getElementById('signup-modal').classList.remove('hidden'); });
             document.getElementById('go-to-login').addEventListener('click', () => { document.getElementById('signup-modal').classList.add('hidden'); document.getElementById('login-modal').classList.remove('hidden'); });
 
-            // API 연동 (회원가입 / 로그인)
+            // 회원가입
             document.getElementById('signup-btn').addEventListener('click', async () => {
                 const id = document.getElementById('signup-id').value.trim();
                 const pw = document.getElementById('signup-pw').value;
@@ -404,49 +363,47 @@
                 if(!id || !pw || !univ || !exam || !examDateStr) return alert("모든 정보를 입력해주세요.");
 
                 try {
-                    const res = await fetch(`${API_BASE_URL}/api/signup`, {
+                    const res = await fetch('/api/signup', {
                         method: 'POST',
                         headers: { 'Content-Type': 'application/json' },
-                        body: JSON.stringify({ id, pw, univ, name: id, exam, examDateStr })
+                        body: JSON.stringify({ id, pw, univ, exam, examDateStr })
                     });
                     const data = await res.json();
-                    if(data.success) {
-                        alert("회원가입 완료! 로그인해주세요.");
-                        document.getElementById('signup-modal').classList.add('hidden');
-                        document.getElementById('login-modal').classList.remove('hidden');
-                    } else {
-                        alert(data.message || "회원가입 실패");
-                    }
-                } catch(e) {
-                    alert("서버 통신 오류가 발생했습니다.");
+                    if (!res.ok) throw new Error(data.error || '회원가입 실패');
+
+                    alert("회원가입 완료! 로그인해주세요.");
+                    document.getElementById('signup-modal').classList.add('hidden');
+                    document.getElementById('login-modal').classList.remove('hidden');
+                } catch (err) {
+                    alert("에러: " + err.message);
                 }
             });
 
+            // 로그인
             document.getElementById('login-btn').addEventListener('click', async () => {
                 const id = document.getElementById('login-id').value.trim();
                 const pw = document.getElementById('login-pw').value;
 
+                if(!id || !pw) return alert("아이디와 비밀번호를 입력해주세요.");
+
                 try {
-                    const res = await fetch(`${API_BASE_URL}/api/login`, {
+                    const res = await fetch('/api/login', {
                         method: 'POST',
                         headers: { 'Content-Type': 'application/json' },
                         body: JSON.stringify({ id, pw })
                     });
                     const data = await res.json();
-                    if(data.success) {
-                        currentUser = id;
-                        localStorage.setItem('skkudy_session', currentUser);
-                        initApp(data.user);
-                    } else {
-                        alert("아이디 또는 비밀번호가 틀렸습니다.");
-                    }
-                } catch(e) {
-                    alert("로그인 통신 오류 발생");
+                    if (!res.ok) throw new Error(data.error || '로그인 실패');
+
+                    currentUser = data.user.id;
+                    initApp(data.user);
+                } catch (err) {
+                    alert("에러: " + err.message);
                 }
             });
 
             document.getElementById('logout-btn').addEventListener('click', () => {
-                if(confirm("로그아웃 하시겠습니까?")) { localStorage.removeItem('skkudy_session'); location.reload(); }
+                if(confirm("로그아웃 하시겠습니까?")) { location.reload(); }
             });
 
             const initApp = (userData) => {
@@ -461,23 +418,18 @@
                 document.getElementById('login-modal').classList.add('hidden');
                 document.getElementById('signup-modal').classList.add('hidden');
                 document.getElementById('app-container').classList.remove('hidden');
-                loadCloudUserData();
+                
+                calendarEvents = userData.events || {};
+                const savedRecords = userData.records || [];
+                const reviewList = document.getElementById('review-list');
+                reviewList.innerHTML = `<li class="empty-msg" id="empty-list-msg" style="${savedRecords.length > 0 ? 'display:none;' : ''}">기록된 학습 내역이 없습니다.</li>`;
+                
+                savedRecords.forEach(rec => createStudyRecordElement(rec.baseDateStr, rec.subject, rec.completed, false));
+                renderCalendar();
             };
 
-            const loadCloudUserData = async () => {
-                try {
-                    const res = await fetch(`${API_BASE_URL}/api/user-data?id=${encodeURIComponent(currentUser)}`);
-                    const data = await res.json();
-                    calendarEvents = data.events || {};
-                    const savedRecords = data.records || [];
-                    const reviewList = document.getElementById('review-list');
-                    reviewList.innerHTML = `<li class="empty-msg" id="empty-list-msg" style="${savedRecords.length > 0 ? 'display:none;' : ''}">기록된 학습 내역이 없습니다.</li>`;
-                    savedRecords.forEach(rec => createStudyRecordElement(rec.baseDateStr, rec.subject, rec.completed, false));
-                    renderCalendar();
-                } catch(e) { console.error(e); }
-            };
-
-            const saveCloudUserData = async () => {
+            const syncUserDataToServer = async () => {
+                if(!currentUser) return;
                 const records = [];
                 document.querySelectorAll('#review-list li:not(.empty-msg)').forEach(li => {
                     records.push({
@@ -486,13 +438,16 @@
                         completed: li.classList.contains('completed')
                     });
                 });
+
                 try {
-                    await fetch(`${API_BASE_URL}/api/save-data`, {
+                    await fetch('/api/update', {
                         method: 'POST',
                         headers: { 'Content-Type': 'application/json' },
-                        body: JSON.stringify({ id: currentUser, events: calendarEvents, records })
+                        body: JSON.stringify({ id: currentUser, records, events: calendarEvents })
                     });
-                } catch(e) { console.error(e); }
+                } catch (err) {
+                    console.error("데이터 동기화 실패:", err);
+                }
             };
 
             const createStudyRecordElement = (baseDateStr, subject, isCompleted = false, shouldSave = true) => {
@@ -531,24 +486,24 @@
 
                 li.querySelector('.task-check').addEventListener('change', (e) => {
                     e.target.checked ? li.classList.add('completed') : li.classList.remove('completed');
-                    saveCloudUserData();
+                    syncUserDataToServer();
                 });
                 li.querySelector('.btn-delete').addEventListener('click', () => {
                     li.remove();
                     if(document.querySelectorAll('#review-list li:not(.empty-msg)').length === 0) document.getElementById('empty-list-msg').style.display = 'block';
-                    saveCloudUserData(); renderCalendar();
+                    syncUserDataToServer(); renderCalendar();
                 });
                 li.querySelector('.btn-postpone').addEventListener('click', () => {
                     li.classList.remove('completed');
                     baseDateObj.setDate(baseDateObj.getDate() + 1);
                     li.querySelector('.base-date-text').textContent = baseDateObj.toISOString().split('T')[0];
                     li.querySelector('.schedule-container').innerHTML = generateScheduleHTML(baseDateObj);
-                    renderCalendar(); saveCloudUserData();
+                    renderCalendar(); syncUserDataToServer();
                 });
 
                 document.getElementById('empty-list-msg').style.display = 'none';
                 document.getElementById('review-list').appendChild(li);
-                if(shouldSave) { saveCloudUserData(); renderCalendar(); }
+                if(shouldSave) { syncUserDataToServer(); renderCalendar(); }
             };
 
             document.getElementById('save-study-btn').addEventListener('click', () => {
@@ -587,7 +542,7 @@
                         if(title) {
                             if(!calendarEvents[dateString]) calendarEvents[dateString] = [];
                             calendarEvents[dateString].push({ title, type: 'custom' });
-                            renderCalendar(); saveCloudUserData();
+                            renderCalendar(); syncUserDataToServer();
                         }
                     });
                     grid.appendChild(div);
@@ -596,11 +551,69 @@
             document.getElementById('prev-month').addEventListener('click', () => { currentCalDate.setMonth(currentCalDate.getMonth() - 1); renderCalendar(); });
             document.getElementById('next-month').addEventListener('click', () => { currentCalDate.setMonth(currentCalDate.getMonth() + 1); renderCalendar(); });
 
-            // 퀴즈
-            document.getElementById('generate-quiz-btn').addEventListener('click', () => {
-                const text = document.getElementById('quiz-source').value;
-                if(!text) return alert("내용을 입력하세요.");
-                document.getElementById('quiz-result').innerHTML = text.split(/\s+/).map(w => w.length >= 3 && Math.random() > 0.6 ? `<input type="text" class="quiz-blank" placeholder="?">` : w).join(' ');
+            // OpenAI 퀴즈 연동
+            document.getElementById('generate-quiz-btn').addEventListener('click', async () => {
+                const sourceText = document.getElementById('quiz-source').value.trim();
+                const resultContainer = document.getElementById('quiz-result');
+
+                if(!sourceText) return alert("학습 내용을 입력해주세요.");
+                resultContainer.innerHTML = `<p style="color: var(--text-muted); text-align: center;">🤖 OpenAI가 핵심 퀴즈를 만드는 중입니다...</p>`;
+
+                try {
+                    const res = await fetch('/api/quiz', {
+                        method: 'POST',
+                        headers: { 'Content-Type': 'application/json' },
+                        body: JSON.stringify({ sourceText })
+                    });
+                    const data = await res.json();
+                    if (!res.ok) throw new Error(data.error || '퀴즈 생성 실패');
+
+                    const { quizText, answers } = data.quiz;
+                    currentQuizAnswers = answers;
+
+                    let htmlFormatted = quizText.replace(/______/g, (match, index) => {
+                        return `<input type="text" class="quiz-blank" data-index="${index}" placeholder="정답">`;
+                    });
+
+                    resultContainer.innerHTML = `
+                        <div style="background: #f8fafc; padding: 20px; border-radius: 8px; border: 1px solid #e2e8f0; line-height: 2.0; font-size: 16px;">
+                            <p><strong>[문제]</strong> ${htmlFormatted}</p>
+                            <button id="submit-quiz-btn" class="btn-small" style="margin-top: 15px; background: #10b981; padding: 8px 16px;">정답 제출 및 확인</button>
+                        </div>
+                        <div id="quiz-feedback" style="margin-top: 15px; font-weight: bold;"></div>
+                    `;
+
+                    document.getElementById('submit-quiz-btn').addEventListener('click', () => {
+                        const userInputs = document.querySelectorAll('.quiz-blank');
+                        let allCorrect = true;
+
+                        userInputs.forEach((input, idx) => {
+                            const userVal = input.value.trim();
+                            const correctVal = currentQuizAnswers[idx];
+
+                            if(userVal === correctVal) {
+                                input.style.borderColor = "#10b981";
+                                input.style.background = "#ecfdf5";
+                            } else {
+                                input.style.borderColor = "#ef4444";
+                                input.style.background = "#fef2f2";
+                                allCorrect = false;
+                            }
+                        });
+
+                        const feedback = document.getElementById('quiz-feedback');
+                        if(allCorrect) {
+                            feedback.style.color = "#10b981";
+                            feedback.textContent = "🎉 정답입니다! 완벽하게 이해하셨네요.";
+                        } else {
+                            feedback.style.color = "#ef4444";
+                            feedback.textContent = `❌ 오답이 있습니다. 정답: ${currentQuizAnswers.join(', ')}`;
+                        }
+                    });
+
+                } catch (err) {
+                    resultContainer.innerHTML = `<p style="color: #ef4444;">에러 발생: ${err.message}</p>`;
+                }
             });
 
             // 메뉴 전환
@@ -619,12 +632,6 @@
                     if(target === 'calendar') renderCalendar();
                 });
             });
-
-            const session = localStorage.getItem('skkudy_session');
-            if (session) {
-                currentUser = session;
-                fetch(`${API_BASE_URL}/api/user-info?id=${encodeURIComponent(session)}`).then(r => r.json()).then(d => { if(d.user) initApp(d.user); });
-            }
         });
     </script>
 </body>
